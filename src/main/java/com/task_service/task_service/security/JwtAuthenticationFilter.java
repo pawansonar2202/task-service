@@ -49,8 +49,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String userType = jwtTokenVerifier.getUserType(token);
 
         @SuppressWarnings("unchecked")
-        Set<String> permissions =
-                jwtTokenVerifier.getClaims(token).get("permissions", Set.class);
+        List<String> permissions =
+                jwtTokenVerifier.getClaims(token).get("permissions", List.class);
+
 
         // Convert permissions → Spring authorities
         List<SimpleGrantedAuthority> authorities =
