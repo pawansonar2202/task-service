@@ -1,5 +1,6 @@
 package com.task_service.task_service.security;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ public class PublicKeyFetcher {
     @Value("${auth.service.url}")
     private String authServiceUrl;
 
+    @PostConstruct
     public void fetchPublicKey()
     {
         try {
@@ -40,8 +42,6 @@ public class PublicKeyFetcher {
 
             // Store in memory
             publicKeyHolder.setRsaPublicKey(publicKey);
-
-            System.out.println(" Public key fetched and stored successfully");
 
         }
         catch (Exception e)
